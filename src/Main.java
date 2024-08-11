@@ -1,28 +1,31 @@
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
     static long startTime;
 
     public static void main(String[] args) {
-        startTime = System.currentTimeMillis();
-        User user = new User("admin", "admin");
+        long startTime = System.currentTimeMillis();
+        Date dateCreation = new Date(2024 - 1900, 7, 11);
+        User user = new User(1, "admin", "admin", dateCreation);
         User.auth(user);
     }
 
     public static void menu() {
         while (true) {
             System.out.println("******************************************************");
-            System.out.println("********* BIENVENUE DANS L’APPLICATION ETAB 1 ********");
-            System.out.println("******************************************************");
-            System.out.println("MENU:");
+            System.out.println("******** BIENVENUE DANS L’APPLICATION ETAB 1.2 *******");
+            System.out.println("******************************************************\n");
+            System.out.println("MENU:\n");
             System.out.println("1: Gestion des élèves");
             System.out.println("2: Gestion des professeurs");
             System.out.println("3: Gestion des utilisateurs");
             System.out.println("0: Quitter");
             System.out.print("Choisissez une option: ");
-            int choix = scanner.nextInt();
-            scanner.nextLine();
+            int choix = sc.nextInt();
+            sc.nextLine();
 
             switch (choix) {
                 case 1:
@@ -51,6 +54,5 @@ public class Main {
         long hours = (duration / (1000 * 60 * 60)) % 24;
         System.out.println("Merci d'avoir utilisé l'application ETAB. Au revoir!");
         System.out.println("Temps d'utilisation: " + hours + " heures, " + minutes + " minutes, " + seconds + " secondes.");
-        scanner.close();
     }
 }

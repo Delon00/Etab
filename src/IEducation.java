@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public interface IEducation {
+public interface IEducation {
+    String enseigner(String matiere);
+    String preparerCours (String cours);
+    String assisterReunion(String sujet);
 }
