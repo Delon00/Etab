@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IUserDao {
-    public User getUser(String identifiant, String motDePasse) throws SQLException;
-    public User updateUser(String identifiant, String motDePasse);
-    public void deleteUser(String identifiant, String motDePasse);
-    public List<User> listeUtilisateur();
+    public User getUser(String identifiant, String password) throws SQLException;
+    public User updateUser(String identifiant, String password) throws SQLException;
+    public void deleteUser(String identifiant, String password) throws SQLException;
+    public List<User> listeUtilisateur()throws SQLException;
 
 }
