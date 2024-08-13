@@ -1,6 +1,10 @@
+package dao;
+
+import models.Prof;
+
 import java.util.List;
 
-public interface ICRUDProfesseur {
+public interface IProfesseurDAO {
 
     Prof ajouter(Prof professeur);
 

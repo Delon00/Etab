@@ -1,11 +1,12 @@
+package models;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
-public class Student extends Person implements ICRUDEleve   {
+public class Student extends Person {
     static ArrayList<Student> students = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
     private String classe;
@@ -85,9 +86,10 @@ public static void menuStudent() {
             case 5:
                 lastAdded();
             case 6:
+                //Main.quit();
                 return;
             case 0:
-                Main.quit();
+                return;
             default:
                 System.out.println("Choix invalide. Veuillez réessayer.");
         }
@@ -193,29 +195,4 @@ public static void menuStudent() {
         }
     }
 
-
-    @Override
-    public Student ajouter(Student eleve) {
-        return null;
-    }
-
-    @Override
-    public Student modifier(Student eleve) {
-        return null;
-    }
-
-    @Override
-    public void supprimer(int identifiant) {
-
-    }
-
-    @Override
-    public List<Student> obtenirEleve() {
-        return List.of();
-    }
-
-    @Override
-    public Student Obtenir(int identifiant) {
-        return null;
-    }
 }

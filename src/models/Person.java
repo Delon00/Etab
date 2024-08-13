@@ -1,3 +1,5 @@
+package models;
+
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +46,12 @@ public class Person {
     private String telephone;
 
     /**
-     * La liste statique contenant toutes les instances de la classe Person.
+     * La liste statique contenant toutes les instances de la classe models.Person.
      */
     private static List<Person> personnes = new ArrayList<>();
 
     /**
-     * Constructeur pour créer une nouvelle instance de la classe Person.
+     * Constructeur pour créer une nouvelle instance de la classe models.Person.
      *
      * @param id            L'identifiant unique de la personne.
      * @param nom           Le nom de la personne.
@@ -212,13 +214,13 @@ public class Person {
     }
 
     /**
-     * Retourne une représentation en chaîne de caractères de l'objet Person.
+     * Retourne une représentation en chaîne de caractères de l'objet models.Person.
      *
-     * @return Une chaîne de caractères représentant l'objet Person.
+     * @return Une chaîne de caractères représentant l'objet models.Person.
      */
     @Override
     public String toString() {
-        return "Person{" + "id=" + id + ", nom='" + nom + '\'' +
+        return "models.Person{" + "id=" + id + ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", dateNaissance=" + dateNaissance +
                 ", ville='" + ville + '\'' +

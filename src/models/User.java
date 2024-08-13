@@ -1,5 +1,5 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+package models;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -70,7 +70,7 @@ public class User {
 
             if (defaultIdentifiant.equals(enteredIdentifiant) && defaultPassword.equals(enteredPassword)) {
                 System.out.println("Connexion réussie !\n");
-                Main.menu();
+                //Main.menu();
                 return;
             } else {
                 System.out.println("Identifiant ou mot de passe incorrect. Veuillez réessayer.");
@@ -111,7 +111,7 @@ public class User {
                 case 5:
                     return;
                 case 0:
-                    Main.menu();
+                    //Main.menu();
                     return;
                 default:
                     System.out.println("Choix invalide. Veuillez réessayer.");

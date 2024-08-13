@@ -1,2 +1,4 @@
-package services;public interface IUserService {
+package services;
+
+public interface IUserService {
 }

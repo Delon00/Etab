@@ -1,3 +1,7 @@
+package models;
+
+import dao.IProfesseurDAO;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -5,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class Prof extends Person implements IEducation,ICRUDProfesseur {
+public class Prof extends Person {
     static ArrayList<Prof> professeur = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
     private Boolean vacant;
@@ -94,7 +98,7 @@ public class Prof extends Person implements IEducation,ICRUDProfesseur {
                 case 5:
                     return;
                 case 0:
-                    Main.menu();
+                    return;
                 default:
                     System.out.println("Choix invalide. Veuillez réessayer.");
             }
@@ -194,43 +198,5 @@ public class Prof extends Person implements IEducation,ICRUDProfesseur {
     }
 
 
-    @Override
-    public String enseigner(String matiere) {
-        return String.format("Enseigne la matière %s", matiere);
-    }
 
-    @Override
-    public String preparerCours(String cours) {
-        return String.format("Prépare le contenu d'un cours sur le sujet %s", prochainCours);
-    }
-
-    @Override
-    public String assisterReunion(String sujet) {
-        return String.format("Doit assister à une reunion sur %s", sujetProchaineReunion);
-    }
-
-    @Override
-    public Prof ajouter(Prof professeur) {
-        return null;
-    }
-
-    @Override
-    public Prof modifier(Prof professeur) {
-        return null;
-    }
-
-    @Override
-    public void supprimer(int identifiant) {
-
-    }
-
-    @Override
-    public List<Prof> obtenirProfesseur() {
-        return List.of();
-    }
-
-    @Override
-    public Prof Obtenir(int identifiant) {
-        return null;
-    }
 }

@@ -1,3 +1,9 @@
+
+import dao.singletonDatabase;
+import models.Prof;
+import models.Student;
+import models.User;
+
 import java.util.Date;
 import java.util.Scanner;
 
@@ -27,7 +33,7 @@ public class Main {
      * Permet la gestion des élèves, des professeurs, et des utilisateurs.
      */
     public static void menu() {
-        DatabaseConnection.getConnection();
+        singletonDatabase.getConnection();
         while (true) {
             System.out.println("******************************************************");
             System.out.println("******** BIENVENUE DANS L’APPLICATION ETAB 1.2 *******");

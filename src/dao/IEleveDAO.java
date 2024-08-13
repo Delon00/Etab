@@ -1,6 +1,10 @@
+package dao;
+
+import models.Student;
+
 import java.util.List;
 
-public interface ICRUDEleve {
+public interface IEleveDAO {
     Student ajouter(Student eleve);
 
     Student modifier(Student eleve);
