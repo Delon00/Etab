@@ -1,5 +1,7 @@
 package models;
 
+import main.Main;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -86,7 +88,7 @@ public static void menuStudent() {
             case 5:
                 lastAdded();
             case 6:
-                //Main.quit();
+                Main.quit();
                 return;
             case 0:
                 return;
