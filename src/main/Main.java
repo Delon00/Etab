@@ -15,7 +15,6 @@ import java.util.Scanner;
 public class Main {
     static Scanner sc = new Scanner(System.in);
     static long startTime;
-
     /**
      * Méthode principale de l'application.
      * Initialise l'application avec un utilisateur par défaut et lance le menu principal.
