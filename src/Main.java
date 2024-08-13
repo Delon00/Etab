@@ -1,11 +1,20 @@
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * La classe principale de l'application ETAB.
+ *
+ */
 public class Main {
     static Scanner sc = new Scanner(System.in);
     static long startTime;
 
+    /**
+     * Méthode principale de l'application.
+     * Initialise l'application avec un utilisateur par défaut et lance le menu principal.
+     *
+     * @param args Les arguments de la ligne de commande.
+     */
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
         Date dateCreation = new Date(2024 - 1900, 7, 11);
@@ -13,7 +22,12 @@ public class Main {
         User.auth(user);
     }
 
+    /**
+     * Affiche le menu principal et gère les différentes options sélectionnées par l'utilisateur.
+     * Permet la gestion des élèves, des professeurs, et des utilisateurs.
+     */
     public static void menu() {
+        DatabaseConnection.getConnection();
         while (true) {
             System.out.println("******************************************************");
             System.out.println("******** BIENVENUE DANS L’APPLICATION ETAB 1.2 *******");
@@ -46,6 +60,10 @@ public class Main {
         }
     }
 
+    /**
+     * Quitte l'application en affichant le temps total d'utilisation.
+     * Le temps d'utilisation est calculé à partir de l'heure de début de l'exécution.
+     */
     public static void quit() {
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

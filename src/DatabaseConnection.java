@@ -10,11 +10,9 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         Connection connection = null;
         try {
-
             Class.forName("com.mysql.cj.jdbc.Driver");
-
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Connexion réussie !");
+            System.out.println("Connexion a la base de données réussie !");
         } catch (ClassNotFoundException e) {
             System.out.println("Driver MySQL non trouvé.");
             e.printStackTrace();
