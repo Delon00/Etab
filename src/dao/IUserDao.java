@@ -10,5 +10,5 @@ public interface IUserDao {
     public User updateUser(String identifiant, String password) throws SQLException;
     public void deleteUser(String identifiant, String password) throws SQLException;
     public List<User> listeUtilisateur()throws SQLException;
-
+    void addUser(User newUser)throws SQLException;
 }

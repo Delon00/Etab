@@ -1,5 +1,7 @@
 package models;
 import main.Main;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -51,7 +53,7 @@ public class User {
         this.dateCreation = dateCreation;
     }
 
-    public static void auth(User user) {
+    public static void auth(User user) throws SQLException {
         Scanner sc = new Scanner(System.in);
 
         String defaultIdentifiant = "admin";
@@ -78,7 +80,7 @@ public class User {
         }
     }
 
-    public static void userGestion(){
+    public static void userGestion() throws SQLException {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("******************************************************");

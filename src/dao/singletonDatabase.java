@@ -12,7 +12,13 @@ public class singletonDatabase {
 
     private singletonDatabase() {}
 
-    public static Connection getInstance() throws SQLException {
+    /**
+     * Retourne une connexion à la base de données, créant une nouvelle connexion si nécessaire.
+     *
+     * @return Connection objet de connexion à la base de données
+     * @throws SQLException si une erreur de connexion se produit
+     */
+    public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,8 +34,5 @@ public class singletonDatabase {
             }
         }
         return connection;
-    }
-
-    public static void getConnection() {
     }
 }

@@ -3,8 +3,10 @@ package main;
 import dao.singletonDatabase;
 import models.Prof;
 import models.Student;
-import models.User;
+import services.IUserService;
+import services.impl.UserServiceImpl;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -15,24 +17,48 @@ import java.util.Scanner;
 public class Main {
     static Scanner sc = new Scanner(System.in);
     static long startTime;
+    private static IUserService userService = new UserServiceImpl();
+
     /**
      * Méthode principale de l'application.
      * Initialise l'application avec un utilisateur par défaut et lance le menu principal.
      *
      * @param args Les arguments de la ligne de commande.
      */
-    public static void main(String[] args) {
-        long startTime = System.currentTimeMillis();
-        Date dateCreation = new Date(2024 - 1900, 7, 11);
-        User user = new User(1, "admin", "admin", dateCreation);
-        User.auth(user);
+    public static void main(String[] args) throws SQLException {
+        startTime = System.currentTimeMillis();
+        authMenu();
+    }
+
+    /**
+     * Affiche le menu de connexion et gère l'authentification de l'utilisateur.
+     */
+    public static void authMenu() throws SQLException {
+        while (true) {
+            System.out.println("******************************************************");
+            System.out.println("********* BIENVENUE DANS L’APPLICATION ETAB 1 ********");
+            System.out.println("******************************************************");
+            System.out.println("CONNEXION:");
+            System.out.print("Entrez votre identifiant: ");
+            String identifiant = sc.nextLine();
+            System.out.print("Entrez votre mot de passe: ");
+            String password = sc.nextLine();
+
+            if (userService.getUser(identifiant, password) != null) {
+                System.out.println("Connexion réussie !\n");
+                menu();
+                return;
+            } else {
+                System.out.println("Identifiant ou mot de passe incorrect. Veuillez réessayer.");
+            }
+        }
     }
 
     /**
      * Affiche le menu principal et gère les différentes options sélectionnées par l'utilisateur.
      * Permet la gestion des élèves, des professeurs, et des utilisateurs.
      */
-    public static void menu() {
+    public static void menu() throws SQLException {
         singletonDatabase.getConnection();
         while (true) {
             System.out.println("******************************************************");
@@ -55,7 +81,7 @@ public class Main {
                     Prof.menuProf();
                     break;
                 case 3:
-                    User.userGestion();
+                    userService.gestionUtilisateurMenu();
                     break;
                 case 0:
                     quit();
