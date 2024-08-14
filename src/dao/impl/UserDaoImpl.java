@@ -2,53 +2,45 @@ package dao.impl;
 
 import dao.IUserDao;
 import models.User;
-import dao.singletonDatabase;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements IUserDao {
+    private Connection connection;
 
-    private static final String QUERY_GET_USER_BY_IDENTIFIANT_AND_PASSWORD = "SELECT * FROM users WHERE identifiant = ? AND password = ?";
-    private static final String QUERY_UPDATE_USER = "UPDATE users SET password = ? WHERE identifiant = ?";
-    private static final String QUERY_DELETE_USER = "DELETE FROM users WHERE identifiant = ? AND password = ?";
-    private static final String QUERY_GET_ALL_USERS = "SELECT * FROM users";
+    public UserDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public User getUser(String identifiant, String password) throws SQLException {
-        User user = null;
-        try (Connection connection = singletonDatabase.getInstance();
-             PreparedStatement statement = connection.prepareStatement(QUERY_GET_USER_BY_IDENTIFIANT_AND_PASSWORD)) {
-
+        String query = "SELECT * FROM users WHERE identifiant = ? AND password = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, identifiant);
             statement.setString(2, password);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                user = new User(
-                        resultSet.getInt("id"),
-                        resultSet.getString("identifiant"),
-                        resultSet.getString("password"),
-                        resultSet.getDate("dateCreation")
-                );
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new User(
+                            resultSet.getInt("id"),
+                            resultSet.getString("identifiant"),
+                            resultSet.getString("password"),
+                            resultSet.getDate("dateCreation")
+                    );
+                }
             }
         }
-        return user;
+        return null;
     }
 
     @Override
     public User updateUser(String identifiant, String password) throws SQLException {
-        try (Connection connection = singletonDatabase.getInstance();
-             PreparedStatement statement = connection.prepareStatement(QUERY_UPDATE_USER)) {
-
+        String query = "UPDATE users SET password = ? WHERE identifiant = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, password);
             statement.setString(2, identifiant);
             int rowsUpdated = statement.executeUpdate();
-
             if (rowsUpdated > 0) {
                 return getUser(identifiant, password);
             }
@@ -58,9 +50,8 @@ public class UserDaoImpl implements IUserDao {
 
     @Override
     public void deleteUser(String identifiant, String password) throws SQLException {
-        try (Connection connection = singletonDatabase.getInstance();
-             PreparedStatement statement = connection.prepareStatement(QUERY_DELETE_USER)) {
-
+        String query = "DELETE FROM users WHERE identifiant = ? AND password = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, identifiant);
             statement.setString(2, password);
             statement.executeUpdate();
@@ -70,9 +61,9 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public List<User> listeUtilisateur() throws SQLException {
         List<User> users = new ArrayList<>();
-        try (Connection connection = singletonDatabase.getInstance();
-             PreparedStatement statement = connection.prepareStatement(QUERY_GET_ALL_USERS);
-             ResultSet resultSet = statement.executeQuery()) {
+        String query = "SELECT * FROM users";
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
 
             while (resultSet.next()) {
                 User user = new User(

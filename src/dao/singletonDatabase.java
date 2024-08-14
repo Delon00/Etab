@@ -10,7 +10,6 @@ public class singletonDatabase {
     private static final String PASSWORD = "";
     private static Connection connection = null;
 
-    // Constructeur privé pour empêcher l'instanciation
     private singletonDatabase() {}
 
     public static Connection getInstance() throws SQLException {

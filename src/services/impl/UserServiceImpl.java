@@ -1,5 +1,7 @@
 package services.impl;
 
+import dao.IUserDao;
+import dao.impl.UserDaoImpl;
 import models.User;
 import services.IUserService;
 
@@ -7,26 +9,29 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements IUserService {
+    private IUserDao userDao;
 
-
-
-    @Override
-    public User getUser(String identifiant, String password) throws SQLException {
-        return null;
+    public UserServiceImpl(IUserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Override
-    public User updateUser(String identifiant, String password) {
-        return null;
+    public User getUser(String identifiant, String motDePasse) throws SQLException {
+        return userDao.getUser(identifiant, motDePasse);
     }
 
     @Override
-    public void deleteUser(String identifiant, String password) {
-
+    public User updateUser(String identifiant, String motDePasse) throws SQLException {
+        return userDao.updateUser(identifiant, motDePasse);
     }
 
     @Override
-    public List<User> listeUtilisateur() {
-        return List.of();
+    public void deleteUser(String identifiant, String motDePasse) throws SQLException {
+        userDao.deleteUser(identifiant, motDePasse);
+    }
+
+    @Override
+    public List<User> listeUtilisateur() throws SQLException {
+        return userDao.listeUtilisateur();
     }
 }
